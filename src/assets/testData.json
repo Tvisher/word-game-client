@@ -1,0 +1,43 @@
+{
+  "wordsList": [
+    {
+      "id": "1",
+      "word": "стол",
+      "theme": "Мебель",
+      "prompt": "Есть стул а есть ...",
+      "valid": true
+    },
+    {
+      "id": "7fbeee18-6520-49c2-ab0e-413b9ccf0ee6",
+      "word": "стулья",
+      "theme": "И снова мебель",
+      "prompt": "Есть стол а есть ...",
+      "valid": true
+    }
+  ],
+  "gameDescription": "Игра на знание мебели",
+  "gameResultMessage": "Что сказать, в слова вы умеете",
+  "backgroundUrl": {
+    "name": "",
+    "path": ""
+  },
+  "selectedColors": {
+    "borderColor": {
+      "name": "rgb(254, 87, 34)",
+      "value": "rgb(254, 87, 34)"
+    },
+    "textColor": {
+      "name": "rgb(0, 135, 129)",
+      "value": "rgb(0, 135, 129)"
+    }
+  },
+  "testWordsCount": "3",
+  "additionalSettings": {
+    "limitPlayTime": {
+      "enable": true,
+      "minutesCount": 10
+    },
+    "allowReplay": true,
+    "disableRepeatUsername": true
+  }
+}

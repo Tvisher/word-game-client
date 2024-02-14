@@ -1,0 +1,193 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
+@import "reset.scss";
+#app {
+  height: 100%;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  display: block;
+  background-color: rgba(235, 244, 255, 1);
+}
+.app__wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.app__footer {
+  height: 100px;
+  background-color: #000;
+  margin-top: auto;
+}
+
+.app__inner {
+  padding: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.app__title {
+  font-family: Montserrat;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 52px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.app__content {
+  max-width: 785px;
+  width: 100%;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid rgba(235, 244, 255, 1);
+}
+
+.content-block__info {
+  font-family: Montserrat;
+  font-size: 16px;
+  line-height: 120%;
+  margin-bottom: 30px;
+}
+.letters-state {
+  margin-bottom: 30px;
+  background: #ebf4ff;
+  padding: 20px;
+  border-radius: 6px;
+}
+.letter-filed {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.letter-filed__text {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 400;
+}
+.letter-filed__cube {
+  width: 48px;
+  height: 48px;
+  padding: 10px;
+  border-radius: 6px;
+  font-family: Inter;
+  font-size: 28px;
+  font-weight: 500;
+  text-align: center;
+  outline: none;
+  border: 1px solid #fff;
+  // color: #fa0056;
+  text-transform: uppercase;
+  &._empty {
+    background-color: #fff;
+    border-color: #fa0056;
+  }
+  &._no-in-word {
+    background-color: #c2cfe0;
+    border-color: #c2cfe0;
+
+    color: #fa0056;
+  }
+  &._has-but-no {
+    border-color: #fa0056;
+    color: #fa0056;
+  }
+  &._letter-guessed {
+    color: #fff;
+    border-color: #fa0056;
+    background-color: #fa0056;
+  }
+}
+
+.app__descr {
+  font-family: 16px;
+  font-weight: 400;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #b8cad5;
+  margin-bottom: 30px;
+}
+
+.red-selection {
+  color: red;
+  font-weight: 600;
+}
+
+.app__user-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.add-user-name {
+  outline: none;
+  width: 100%;
+  padding: 10px;
+  display: block;
+  border-radius: 4px;
+  border: 1px solid #00426947;
+}
+.nickname-error {
+  display: none;
+  font-size: 12px;
+  color: red;
+}
+
+.app-btn {
+  display: block;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 14px 30px;
+  color: #fff;
+  margin: auto;
+  margin-top: 30px;
+  background-color: #fa0056;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.timer-container {
+  width: 100%;
+  display: flex;
+  font-family: Montserrat;
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  background-color: #ebf4ff;
+  padding: 10px;
+  border-radius: 6px;
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.words-table {
+  .word-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.cont-descr {
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: center;
+  color: #333333;
+  margin: 0;
+  margin-top: 20px;
+}
