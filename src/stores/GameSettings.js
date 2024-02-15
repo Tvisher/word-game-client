@@ -14,6 +14,8 @@ export const useGameSettings = defineStore("GameSettings", () => {
     const setApplicationData = (data) => {
         applicationData.value = data;
         console.log(applicationData.value);
+        document.body.style.setProperty("--app-color", applicationData.value.selectedColors.borderColor.value);
+        document.body.style.setProperty("--app-text-color", applicationData.value.selectedColors.textColor.value);
     }
     // Actions
     const getAppData = async () => {

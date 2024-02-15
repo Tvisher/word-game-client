@@ -1,11 +1,19 @@
 <template>
   <div>
-    <div class="content-block__info">
-      <strong>Тематика:</strong> {{ wordData.theme }}
-    </div>
+    <div class="game-step-head">
+      <div class="game-step-head__info">
+        <div class="content-block__info">
+          <strong>Тематика:</strong> {{ wordData.theme }}
+        </div>
 
-    <div class="content-block__info">
-      <strong>Подсказка:</strong> {{ wordData.prompt }}
+        <div class="content-block__info">
+          <strong>Подсказка:</strong> {{ wordData.prompt }}
+        </div>
+      </div>
+      <div class="game-step-num">
+        Слово <strong>{{ gameStep + 1 }}</strong> из
+        <strong>{{ gameStepsLength }}</strong>
+      </div>
     </div>
     <div class="timer-container">
       <slot></slot>
@@ -23,15 +31,16 @@
           @keydown="handleKeyDown($event, letterInd)"
           :class="{
             '_no-in-word':
-              !word.includes(guessedWords[ind][letterInd]) && wordStep > ind,
+              !word.includes(guessedWords[ind].word[letterInd]) &&
+              guessedWords[ind].filled,
             '_has-but-no':
               guessedWords[ind][letterInd] != word[letterInd] &&
-              word.includes(guessedWords[ind][letterInd]) &&
-              wordStep > ind,
+              word.includes(guessedWords[ind].word[letterInd]) &&
+              guessedWords[ind].filled,
             '_letter-guessed':
-              guessedWords[ind][letterInd] == word[letterInd] &&
-              word.includes(guessedWords[ind][letterInd]) &&
-              wordStep > ind,
+              guessedWords[ind].word[letterInd] == word[letterInd] &&
+              word.includes(guessedWords[ind].word[letterInd]) &&
+              guessedWords[ind].filled,
           }"
         />
       </div>
@@ -43,12 +52,13 @@
   </div>
 </template>
 <script setup>
-import { defineProps, defineEmits, ref } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 import { useGameSettings } from "@/stores/GameSettings";
 const store = useGameSettings();
 const emits = defineEmits(["nextGameStep"]);
 const props = defineProps({
   gameStep: Number,
+  gameStepsLength: Number,
 });
 
 const wordData = ref(store.currentWord(props.gameStep));
@@ -59,10 +69,20 @@ const wordStep = ref(0);
 
 const guessedWordsTemplate = {};
 for (let index = 0; index < testWordsCount; index++) {
-  guessedWordsTemplate[index] = [];
+  guessedWordsTemplate[index] = {
+    word: [],
+    filled: false,
+  };
 }
 const guessedWords = ref(guessedWordsTemplate);
 const isKeyDownEvent = ref(false);
+const focusInCurrentInput = () => {
+  const wordsTable = document.querySelector(".words-table");
+  const currentInput = [
+    ...wordsTable.querySelectorAll(".letter-filed__cube"),
+  ].filter((input) => !input.hasAttribute("readonly"));
+  currentInput[0] && currentInput[0].focus();
+};
 
 const editLetter = ($event, index) => {
   let value = $event.target.value.toLowerCase();
@@ -72,7 +92,7 @@ const editLetter = ($event, index) => {
     value = "";
   }
   $event.target.value = value;
-  guessedWords.value[wordStep.value][index] = value;
+  guessedWords.value[wordStep.value].word[index] = value;
   if (!isKeyDownEvent.value) {
     const nextInput = $event.target.nextSibling;
     if (nextInput.tagName == "INPUT" && value) {
@@ -93,9 +113,12 @@ const focusInput = (e) => {
   }
 };
 const handleKeyDown = ($event, index) => {
+  if ($event.keyCode == 13) {
+    checkWord();
+    $event.target.blur();
+    return;
+  }
   if ($event.keyCode === 8 && $event.target.value == "") {
-    console.log("handleKeyDown");
-
     isKeyDownEvent.value = true;
     const prevInput = $event.target.previousSibling;
     if (prevInput.tagName == "INPUT") {
@@ -110,24 +133,43 @@ const checkWord = () => {
   if (wordStep.value >= testWordsCount) {
     return;
   }
-  const currentStepWord = guessedWords.value[wordStep.value]
+  const currentStepWord = guessedWords.value[wordStep.value].word
     .filter((letter) => letter)
     .join("")
     .trim();
   if (currentStepWord == wordData.value.word) {
-    emits("nextGameStep");
+    guessedWords.value[wordStep.value].filled = true;
+    setTimeout(() => {
+      emits("nextGameStep");
+    }, 1000);
     return;
   }
   if (currentStepWord.length == wordLength) {
+    guessedWords.value[wordStep.value].filled = true;
     wordStep.value++;
+    nextTick(() => focusInCurrentInput());
   }
   if (wordStep.value == testWordsCount) {
-    console.log("Проиграл");
+    console.log("Кончились попытки, ты проиграл");
+    alert("Кончились попытки, ты проиграл");
   }
 };
+
+onMounted(() => {
+  focusInCurrentInput();
+});
 </script>
 <style scoped>
 .content-block__info {
   margin-bottom: 10px;
+}
+
+.game-step-head {
+  display: flex;
+  align-items: flex-start;
+}
+.game-step-num {
+  margin-left: auto;
+  padding-left: 20px;
 }
 </style>

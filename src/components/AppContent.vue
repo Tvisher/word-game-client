@@ -8,6 +8,7 @@
           v-if="gameStart"
           :key="gameStep"
           :gameStep="gameStep"
+          :gameStepsLength="wordsCount"
           @nextGameStep="nextGameStep"
         >
           <vue-countdown
@@ -22,6 +23,10 @@
             :
             {{ seconds >= 0 && seconds <= 9 ? "0" + seconds : seconds }}
           </vue-countdown>
+          <div class="words-complited-list" v-if="guessedWords.length > 0">
+            Угаданные <br />
+            слова
+          </div>
         </GameStep>
       </transition>
     </div>
@@ -50,12 +55,19 @@ const startGame = () => {
   gameStart.value = !0;
 };
 const nextGameStep = () => {
+  if (guessedWords.value.length === wordsCount) return;
   const currentWord = store.currentWord(gameStep.value).value.word;
   guessedWords.value.push(currentWord);
   if (gameStep.value < wordsCount - 1) {
     gameStep.value++;
   } else {
     console.log("Конец игры, все слова отгаданы");
+    alert("Конец игры, все слова отгаданы");
+
+    const userResultTime = msecToString(
+      defaultMinutesLimit - minutesLimit.value
+    );
+    console.log(userResultTime);
   }
 };
 const checkprogress = (data) => {
@@ -63,7 +75,20 @@ const checkprogress = (data) => {
 };
 const timeIsOver = () => {
   console.log("Конец игры, так как вышло время");
+  alert("Конец игры, так как вышло время");
 };
+
+function msecToString(milliseconds) {
+  var minutes = Math.floor(milliseconds / 60000);
+  var seconds = ((milliseconds % 60000) / 1000).toFixed(0);
+  return (
+    (minutes < 10 ? "0" : "") +
+    minutes +
+    ":" +
+    (seconds < 10 ? "0" : "") +
+    seconds
+  );
+}
 </script>
 <style>
 .fade-enter-active,

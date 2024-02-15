@@ -13,11 +13,14 @@
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .app__footer {
   height: 100px;
-  background-color: #000;
+  background-color: #333333;
   margin-top: auto;
 }
 
@@ -36,12 +39,13 @@
   line-height: 52px;
   text-align: center;
   margin-bottom: 24px;
+  color: var(--app-text-color);
 }
 
 .app__content {
   max-width: 785px;
   width: 100%;
-  padding: 40px;
+  padding: 30px;
   background-color: #fff;
   border-radius: 4px;
   border: 1px solid rgba(235, 244, 255, 1);
@@ -84,26 +88,26 @@
   text-align: center;
   outline: none;
   border: 1px solid #fff;
-  // color: #fa0056;
+  // color: var(--app-color);
   text-transform: uppercase;
   &._empty {
     background-color: #fff;
-    border-color: #fa0056;
+    border-color: var(--app-color);
   }
   &._no-in-word {
     background-color: #c2cfe0;
     border-color: #c2cfe0;
 
-    color: #fa0056;
+    color: var(--app-color);
   }
   &._has-but-no {
-    border-color: #fa0056;
-    color: #fa0056;
+    border-color: var(--app-color);
+    color: var(--app-color);
   }
   &._letter-guessed {
     color: #fff;
-    border-color: #fa0056;
-    background-color: #fa0056;
+    border-color: var(--app-color);
+    background-color: var(--app-color);
   }
 }
 
@@ -146,16 +150,17 @@
   border: none;
   cursor: pointer;
   padding: 14px 30px;
-  color: #fff;
+  color: var(--app-text-color);
   margin: auto;
   margin-top: 30px;
-  background-color: #fa0056;
+  background-color: var(--app-color);
   border-radius: 4px;
   font-size: 16px;
   font-weight: 600;
 }
 
 .timer-container {
+  position: relative;
   width: 100%;
   display: flex;
   font-family: Montserrat;
@@ -190,4 +195,25 @@
   color: #333333;
   margin: 0;
   margin-top: 20px;
+}
+
+.words-complited-list {
+  user-select: none;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  padding: 8px 12px;
+  padding-left: 50px;
+  text-align: left;
+  border: 1px solid #c2cfe0;
+  border-radius: 6px;
+  font-family: Montserrat;
+  font-size: 10px;
+  line-height: 120%;
+  font-weight: 400;
+  color: #575757;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='27' height='27' viewBox='0 0 27 27' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M13.5 7.875C13.5 6.68153 13.0259 5.53693 12.182 4.69302C11.3381 3.84911 10.1935 3.375 9 3.375H2.25V20.25H10.125C11.0201 20.25 11.8786 20.6056 12.5115 21.2385C13.1444 21.8714 13.5 22.7299 13.5 23.625M13.5 7.875V23.625M13.5 7.875C13.5 6.68153 13.9741 5.53693 14.818 4.69302C15.6619 3.84911 16.8065 3.375 18 3.375H24.75V20.25H16.875C15.9799 20.25 15.1214 20.6056 14.4885 21.2385C13.8556 21.8714 13.5 22.7299 13.5 23.625' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e ");
+  background-repeat: no-repeat;
+  background-size: 27px;
+  background-position: left 10px center;
 }
