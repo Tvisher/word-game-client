@@ -6,7 +6,6 @@
   >
     <AppContent />
   </div>
-  asdasd
 </template>
 <script setup>
 import AppContent from "@/components/AppContent.vue";
@@ -20,6 +19,8 @@ store
   .then((res) => (aplicationReady.value = true))
   .catch((err) => {
     console.log(err);
+    aplicationReady.value = true;
+
     if (process.env.NODE_ENV === "development") {
       aplicationReady.value = true;
     }
