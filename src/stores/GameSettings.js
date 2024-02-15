@@ -37,6 +37,7 @@ export const useGameSettings = defineStore("GameSettings", () => {
                 })
                 .catch((error) => {
                     console.log("Ошибка!!!", error);
+                    setApplicationData(testData);
                     if (process.env.NODE_ENV === "development") {
                         setApplicationData(testData);
                     }
