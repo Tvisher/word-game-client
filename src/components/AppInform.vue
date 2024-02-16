@@ -11,7 +11,6 @@
         <input type="text" class="letter-filed__cube _empty" readonly />
         <div class="letter-filed__text">Пустая клетка</div>
       </div>
-
       <div class="letter-filed">
         <input
           type="text"
