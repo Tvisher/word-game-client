@@ -10,9 +10,10 @@
           :gameStep="gameStep"
           :gameStepsLength="wordsCount"
           @nextGameStep="nextGameStep"
+          @attemptsEnd="attemptsEnd"
         >
           <vue-countdown
-            v-if="gameStart"
+            v-if="gameStart && showTimer"
             :time="minutesLimit"
             :interval="500"
             v-slot="{ minutes, seconds }"
@@ -24,6 +25,7 @@
             :
             {{ seconds >= 0 && seconds <= 9 ? "0" + seconds : seconds }}
           </vue-countdown>
+          <span v-else> 00:00 </span>
           <div class="words-prompt" @click="showPromptModal = true"></div>
         </GameStep>
       </transition>
@@ -105,7 +107,9 @@ const gameStep = ref(0);
 const wordsCount = store.applicationData.wordsList.length;
 const showPromptModal = ref(false);
 const timerComponent = ref(null);
+const showTimer = ref(true);
 const startGame = () => (gameStart.value = !0);
+
 const nextGameStep = () => {
   if (guessedWords.value.length === wordsCount) return;
   const currentWord = store.currentWord(gameStep.value).value.word;
@@ -113,7 +117,8 @@ const nextGameStep = () => {
   if (gameStep.value < wordsCount - 1) {
     gameStep.value++;
   } else {
-    console.log(timerComponent.value.pause());
+    timerComponent.value.pause();
+    showTimer.value = false;
     console.log("Конец игры, все слова отгаданы");
     alert("Конец игры, все слова отгаданы");
 
@@ -122,6 +127,11 @@ const nextGameStep = () => {
     );
     console.log(userResultTime);
   }
+};
+
+const attemptsEnd = () => {
+  timerComponent.value.pause();
+  showTimer.value = false;
 };
 const checkprogress = (data) => (minutesLimit.value = data.totalMilliseconds);
 const timeIsOver = () => {

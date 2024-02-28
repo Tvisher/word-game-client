@@ -55,7 +55,7 @@
 import { ref, onMounted, nextTick } from "vue";
 import { useGameSettings } from "@/stores/GameSettings";
 const store = useGameSettings();
-const emits = defineEmits(["nextGameStep"]);
+const emits = defineEmits(["nextGameStep", "attemptsEnd"]);
 const props = defineProps({
   gameStep: Number,
   gameStepsLength: Number,
@@ -152,6 +152,7 @@ const checkWord = () => {
   if (wordStep.value == testWordsCount) {
     console.log("Кончились попытки, ты проиграл");
     alert("Кончились попытки, ты проиграл");
+    emits("attemptsEnd");
   }
 };
 

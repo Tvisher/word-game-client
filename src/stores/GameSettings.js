@@ -3,7 +3,8 @@ import { defineStore } from 'pinia';
 import axios from 'axios';
 import testData from '../assets/testData.json';
 
-const wordsGameId = document.querySelector('#app').dataset.id;
+const wordsGameId = document.querySelector('#app').dataset.gameId;
+
 export const useGameSettings = defineStore("GameSettings", () => {
     // state refs
     const applicationData = ref({});
@@ -13,26 +14,21 @@ export const useGameSettings = defineStore("GameSettings", () => {
 
     const setApplicationData = (data) => {
         applicationData.value = data;
-        console.log(applicationData.value);
         document.body.style.setProperty("--app-color", applicationData.value.selectedColors.borderColor.value);
         document.body.style.setProperty("--app-text-color", applicationData.value.selectedColors.textColor.value);
     }
     // Actions
     const getAppData = async () => {
         return new Promise((resolve, reject) => {
-            let postData = {
-                id: wordsGameId,
-            };
 
-            axios.post('/ajax/someurl',
-                postData,
+            axios.get('/local/templates/gameword/itemjson.php',
                 {
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
+                    params: {
+                        id: wordsGameId,
+                    },
                 })
                 .then((response) => {
-                    setApplicationData(response.data);
+                    setApplicationData(JSON.parse(response.data));
                     resolve();
                 })
                 .catch((error) => {
