@@ -45,6 +45,6 @@
       "minutesCount": 10
     },
     "allowReplay": true,
-    "disableRepeatUsername": true
+    "disableRepeatUsername": false
   }
 }

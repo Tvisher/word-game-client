@@ -57,15 +57,19 @@
         type="text"
         class="add-user-name"
         placeholder="Придумайте себе username для таблицы лидеров"
+        @input="$emit('createUserName', $event)"
       />
-      <div class="nickname-error">Данный ник уже занят</div>
-      <div class="nickname-error">поле не может быть пустым</div>
+      <div class="nickname-error" v-if="showErr">
+        {{ props.usernameStatus }}
+      </div>
     </div>
     <button class="app-btn" @click="$emit('startGame')">Начинаем!</button>
   </div>
 </template>
 
 <script setup>
+const props = defineProps(["usernameStatus", "showErr"]);
+
 import { useGameSettings } from "@/stores/GameSettings";
 const store = useGameSettings();
 </script>
