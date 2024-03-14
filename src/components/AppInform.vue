@@ -56,7 +56,7 @@
       <input
         type="text"
         class="add-user-name"
-        placeholder="Придумайте себе username для таблицы лидеров"
+        placeholder="Никнейм"
         @input="$emit('createUserName', $event)"
       />
       <div class="nickname-error" v-if="showErr">

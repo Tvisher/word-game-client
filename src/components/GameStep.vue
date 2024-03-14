@@ -150,8 +150,6 @@ const checkWord = () => {
     nextTick(() => focusInCurrentInput());
   }
   if (wordStep.value == testWordsCount) {
-    console.log("Кончились попытки, ты проиграл");
-    alert("Кончились попытки, ты проиграл");
     emits("attemptsEnd");
   }
 };

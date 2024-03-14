@@ -2,26 +2,13 @@
   "wordsList": [
     {
       "id": "1",
-      "word": "стол",
+      "word": "квадракопт",
       "theme": "Мебель(ответ стол)",
       "prompt": "Есть стул а есть ...",
       "valid": true
-    },
-    {
-      "id": "7fbeee18-6520-49c2-ab0e-413b9ccf0ee6",
-      "word": "кровать",
-      "theme": "И снова мебель(ответ кровать)",
-      "prompt": "На чём ты спишь?",
-      "valid": true
-    },
-    {
-      "id": "7fbeee18-6520-49c2-asdb0e-413b9ccf0ee6",
-      "word": "диван",
-      "theme": "И снова мебель(ответ диван)",
-      "prompt": "Что чаще всего стоит в зале?",
-      "valid": true
     }
   ],
+  "gameTitle": "Игра на",
   "gameDescription": "Игра на знание мебели",
   "gameResultMessage": "Что сказать, в слова вы умеете",
   "backgroundUrl": {
@@ -45,6 +32,7 @@
       "minutesCount": 10
     },
     "allowReplay": true,
-    "disableRepeatUsername": false
+    "disableRepeatUsername": false,
+    "hideFooterBlock": false
   }
 }

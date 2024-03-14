@@ -19,6 +19,9 @@
 }
 
 .app__footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100px;
   background-color: #333333;
   margin-top: auto;
@@ -51,6 +54,22 @@
   background-color: #fff;
   border-radius: 4px;
   border: 1px solid rgba(235, 244, 255, 1);
+}
+.app__content {
+  position: relative;
+  .admin-edit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background: #ffe7ef;
+    border-radius: 4px;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+  }
 }
 .game-result {
   max-width: 460px;
@@ -119,7 +138,7 @@
 }
 
 .app__descr {
-  font-family: 16px;
+  font-size: 16px;
   font-weight: 400;
   padding-bottom: 30px;
   border-bottom: 1px solid #b8cad5;
@@ -169,6 +188,7 @@
   border-radius: 4px;
   font-size: 16px;
   font-weight: 600;
+  line-height: 100%;
 }
 
 .timer-container {
@@ -230,6 +250,7 @@
 }
 
 .app-modal {
+  padding: 10px;
   position: fixed;
   left: 0;
   top: 0;
@@ -348,6 +369,7 @@
 }
 
 .game-result__items {
+  margin-bottom: 20px;
   padding-right: 10px;
   max-height: 550px;
   overflow: auto;
@@ -360,7 +382,7 @@
 
   /* ползунок скроллбара */
   &::-webkit-scrollbar-thumb {
-    background-color: var(--app-text-color);
+    background-color: var(--app-color);
     border-radius: 9em;
     box-shadow: inset 1px 1px 10px #f3faf7;
   }
@@ -391,4 +413,149 @@
 .game-result__btn {
   margin: auto auto 0;
   width: fit-content;
+}
+
+.res-modal {
+  .app-modal__title {
+    color: #333;
+    text-align: center;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 130%; /* 52px */
+  }
+  .app-modal__ico {
+    width: 132px;
+    height: 132px;
+    svg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      margin-bottom: 20px;
+    }
+  }
+  .app-modal__content {
+    padding: 40px;
+    background: #ebf4ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .app-modal__sub {
+    display: block;
+    color: #262b31;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 28px */
+    margin: 20px 0;
+  }
+}
+
+.app__footer-logo {
+  flex-wrap: wrap;
+  justify-content: center;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+  gap: 10px;
+  margin: auto;
+}
+
+.game-result__message {
+  margin: 20px 0;
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+@media (max-width: 850px) {
+  .app__inner {
+    padding: 20px;
+  }
+  .letter-filed__cube {
+    width: 38px;
+    height: 38px;
+    font-size: 20px;
+  }
+}
+.game-step-num {
+  flex-shrink: 0;
+}
+
+@media (max-width: 660px) {
+  .game-step-head {
+    flex-direction: column;
+  }
+  .game-step-num {
+    margin-top: 20px;
+  }
+  .timer-container {
+    margin: 20px 0;
+  }
+  .letter-filed__cube {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    padding: 0;
+  }
+  .words-table .word-row {
+    gap: 5px;
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+
+  .app__content,
+  .game-result {
+    padding: 30px 15px;
+  }
+  .timer-container {
+    font-size: 24px;
+  }
+  .words-prompt {
+    padding: 15px;
+    background-size: 20px;
+  }
+  .app-modal .app-modal__content {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 440px) {
+  .letter-filed__cube {
+    width: 27px;
+    height: 27px;
+    font-size: 16px;
+  }
+  .app-modal .letter-filed__cube {
+    width: 27px;
+    height: 27px;
+    font-size: 16px;
+  }
+  .app__inner {
+    padding: 15px;
+  }
+  .app__title {
+    font-size: 36px;
+    line-height: 100%;
+    margin-bottom: 20px;
+  }
+  .app__user-title {
+    font-size: 16px;
+  }
+  .app-btn {
+    margin-top: 20px;
+  }
+  .letter-filed {
+    gap: 15px;
+  }
+  .letters-state {
+    margin-bottom: 20px;
+  }
+  .letter-filed__text {
+    font-size: 14px;
+    line-height: 120%;
+  }
 }
